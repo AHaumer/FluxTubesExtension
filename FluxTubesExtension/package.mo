@@ -4,7 +4,9 @@ package FluxTubesExtension "Extension of the Magnetic.FluxTubes package"
   import Modelica.Units.SI;
   import Modelica.Constants.mu_0;
 
-  annotation (preferredView="info", uses(Modelica(version="4.0.0")), Icon(graphics={
+  annotation (preferredView="info",
+    version="1.0.0", versionDate="2022-06-19",
+    uses(Modelica(version="4.0.0")), Icon(graphics={
     Polygon(
       origin={-3.75,0},
       fillColor={160,160,164},
