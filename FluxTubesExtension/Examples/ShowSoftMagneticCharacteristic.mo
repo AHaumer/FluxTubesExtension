@@ -4,29 +4,29 @@ model ShowSoftMagneticCharacteristic
   extends Modelica.Icons.Example;
   SI.MagneticFieldStrength H=-25E3 + 50E3*time
     "Magnetic field strength";
+  parameter Material.SoftMagnetic.ElectricSheet.M350_50A material
+    annotation (Placement(transformation(extent={{-60,0},{-40,20}})));
   SI.RelativePermeability mu_r(start=1)=
      1 + (material.mu_i - 1 + material.c_a*abs(B)/material.B_myMax)/(1 + material.c_b*abs(B)/material.B_myMax + (abs(B)/material.B_myMax)^material.n)
     "Relative permeability of material";
   SI.MagneticFluxDensity B=mu_0*mu_r*H
     "Magnetic flux density of material";
+  parameter Material.SimpleSoftMagnetic.ESheetI simpleMaterial
+    annotation (Placement(transformation(extent={{-10,0},{10,20}})));
   SI.MagneticFluxDensity B_simple=Material.SimpleSoftMagnetic.BH_Approx(simpleMaterial, H)
     "Magnetic flux density of simple material";
-  SI.RelativePermeability mu_r_ssimple=Material.SimpleSoftMagnetic.mu_rApprox(simpleMaterial,H)
+  SI.RelativePermeability mu_r_simple=Material.SimpleSoftMagnetic.mu_rApprox(simpleMaterial, H)
     "Relative permeability of simple material ";
-  SI.RelativePermeability mu_rd_simple=Material.SimpleSoftMagnetic.mu_rdApprox(simpleMaterial,H)
+  SI.RelativePermeability mu_rd_simple=Material.SimpleSoftMagnetic.mu_rdApprox(simpleMaterial, H)
     "Relative differential permeability of simple material ";
+  parameter Material.PiecewiseLinearSoftMagnetic.ESheetI piecewiseLinearMaterial
+    annotation (Placement(transformation(extent={{40,0},{60,20}})));
   SI.MagneticFluxDensity B_piecewiseLinear=Material.PiecewiseLinearSoftMagnetic.BH_Approx(piecewiseLinearMaterial, H)
     "Magnetic flux density of piecewise linear interpolated material";
   SI.RelativePermeability mu_r_piecewiseLinear=Material.PiecewiseLinearSoftMagnetic.mu_rApprox(piecewiseLinearMaterial, H)
     "Relative permeability of piecewise linear interpolated material ";
   SI.RelativePermeability mu_rd_piecewiseLinear=Material.PiecewiseLinearSoftMagnetic.mu_rdApprox(piecewiseLinearMaterial, H)
     "Relative differential permeability of piecewise linear interpolated material ";
-  parameter Material.SoftMagnetic.ElectricSheet.M350_50A material
-    annotation (Placement(transformation(extent={{-60,0},{-40,20}})));
-  parameter Material.SimpleSoftMagnetic.ESheetI simpleMaterial
-    annotation (Placement(transformation(extent={{-10,0},{10,20}})));
-  parameter Material.PiecewiseLinearSoftMagnetic.ESheetI piecewiseLinearMaterial
-    annotation (Placement(transformation(extent={{40,0},{60,20}})));
   annotation (experiment(
       Interval=0.0001,
       Tolerance=1e-06,
