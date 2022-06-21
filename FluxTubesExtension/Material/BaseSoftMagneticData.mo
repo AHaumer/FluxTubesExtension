@@ -13,7 +13,7 @@ record BaseSoftMagneticData
   parameter Real c_b=1 "Coefficient of approximation function";
   parameter Real n=1 "Exponent of approximation function";
 //Macfadyen
-  parameter Integer N=1 "Count of exponential summands";
+  parameter Integer N=1 "Count of nodes";
   parameter SI.MagneticFieldStrength Hk[N]={0} "Field strength coefficients";
   parameter SI.MagneticFluxDensity Bk[N]={0} "Flux density coefficients";
   annotation (defaultComponentPrefixes="parameter",

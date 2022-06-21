@@ -36,11 +36,15 @@ equation
       mu_r = 1 + (material.mu_i - 1 + material.c_a*B_N)/(1 + material.c_b*B_N + B_N^material.n);
       H = B/(mu_0*mu_r);
     elseif material.approximation==FluxTubesExtension.Types.Approximation.Macfadyen then
-      B = FluxTubesExtension.Material.SimpleSoftMagnetic.BH_Approx(material, H);
-      mu_r = FluxTubesExtension.Material.SimpleSoftMagnetic.mu_rApprox(material, H);
+      B = FluxTubesExtension.Material.SimpleSoftMagnetic.BH_Approx(
+        material.N, material.Hk, material.Bk, H);
+      mu_r = FluxTubesExtension.Material.SimpleSoftMagnetic.mu_rApprox(
+        material.N, material.Hk, material.Bk, H);
     else//material.approximation==FluxTubesExtension.Types.Approximation.PiecewiseLinear
-      B = FluxTubesExtension.Material.PiecewiseLinearSoftMagnetic.BH_Approx(material, H);
-      mu_r = FluxTubesExtension.Material.PiecewiseLinearSoftMagnetic.mu_rApprox(material, H);
+      B = FluxTubesExtension.Material.PiecewiseLinearSoftMagnetic.BH_Approx(
+        material.N, material.Hk, material.Bk, H);
+      mu_r = FluxTubesExtension.Material.PiecewiseLinearSoftMagnetic.mu_rApprox(
+        material.N, material.Hk, material.Bk, H);
     end if;
   end if;
   G_m = mu_0*mu_r*A/l_m;

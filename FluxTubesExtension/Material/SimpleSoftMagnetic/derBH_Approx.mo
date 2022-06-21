@@ -3,8 +3,9 @@ function derBH_Approx
   "Approximation of der(B(H)) for simple soft magnetic materials"
   extends Modelica.Icons.Function;
 
-  input FluxTubesExtension.Material.SimpleSoftMagnetic.BaseData material
-    "Material specific parameter set";
+  input Integer N "Count of exponential summands";
+  input SI.MagneticFieldStrength Hk[N] "Field strength coefficients";
+  input SI.MagneticFluxDensity Bk[N] "Flux density coefficients";
   input SI.MagneticFieldStrength H
       "Field strength in ferromagnetic flux tube element";
   input Real der_H(unit="A/(m.s)")
@@ -14,7 +15,5 @@ function derBH_Approx
       "Derivative of flux density in ferromagnetic flux tube element";
 
 algorithm
-//der_B := mu_0*mu_rdApprox(material, H)*der_H;
-  der_B := (mu_0 + sum({material.Bk[k]/material.Hk[k]*exp(-abs(H)/material.Hk[k]) for k in 1:material.N}))*der_H;
-  annotation (Inline=true);
+  der_B := (mu_0 + sum({Bk[k]/Hk[k]*exp(-abs(H)/Hk[k]) for k in 1:N}))*der_H;
 end derBH_Approx;

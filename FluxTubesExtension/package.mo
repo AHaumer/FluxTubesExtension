@@ -5,7 +5,7 @@ package FluxTubesExtension "Extension of the Magnetic.FluxTubes package"
   import Modelica.Constants.mu_0;
 
   annotation (preferredView="info",
-    version="1.0.0", versionDate="2022-06-19",
+    version="1.1.0", versionDate="2022-06-21",
     uses(Modelica(version="4.0.0")), Icon(graphics={
     Polygon(
       origin={-3.75,0},
