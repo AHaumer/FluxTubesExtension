@@ -2,15 +2,15 @@ within FluxTubesExtension.Examples;
 model ToroidalCoreAirgap "Educational example: iron core with airgap"
   extends Modelica.Icons.Example;
   import Modelica.Constants.pi;
-  parameter SI.Length r=0.05 "Middle radius of iron core";
-  parameter SI.Length d=0.01 "Diameter of cylindrical cross section";
+  parameter SI.Length r=0.15 "Middle radius of iron core";
+  parameter SI.Length d=0.02 "Diameter of cylindrical cross section";
   parameter SI.RelativePermeability mu_r=material.mu_i
     "Relative permeability of core";
   parameter SI.Length delta=0.001 "Length of airgap";
   parameter SI.Angle alpha=(1 - delta/(2*pi*r))*2*pi
     "Section angle of toroidal core";
   parameter Integer N=500 "Number of exciting coil turns";
-  parameter SI.Current I=2.5 "Maximum exciting current";
+  parameter SI.Current I=3 "Maximum exciting current";
   Modelica.Magnetic.FluxTubes.Basic.ElectroMagneticConverter excitingCoil(N=N)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   FixedShape.Toroid core(
@@ -57,8 +57,8 @@ model ToroidalCoreAirgap "Educational example: iron core with airgap"
         origin={60,0})));
   parameter Material.PiecewiseLinearSoftMagnetic.BaseData material(
     N=2,
-    Hk={150,300},
-    Bk={0.75,1})
+    Hk={300,1600},
+    Bk={1.2,1.4})
     annotation (Placement(transformation(extent={{-10,40},{10,60}})));
 equation
   connect(core.port_n, measuringCoil.port_p)
@@ -128,12 +128,9 @@ The initial permeability of the core is the same in both cases, but saturation i
 <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">
 <tr><th>H / A/m</th><th>B / T</th></tr>
 <tr><td> 0     </td><td>0.00 </td></tr>
-<tr><td>150    </td><td>0.75 </td></tr>
-<tr><td>300    </td><td>1.00 </td></tr>
+<tr><td>300    </td><td>1.20 </td></tr>
+<tr><td>1600   </td><td>1.40 </td></tr>
 </table>
-<p>
-This means doubling the magnetic field strength causes only one third increase in magnetic flux density (instead of doubling magnetic flux density, too).
-</p>
 <p>
 Taking saturation into account the point of operation can be ontained by the following procedure:
 </p>
@@ -147,5 +144,8 @@ Taking saturation into account the point of operation can be ontained by the fol
     </ul>
 <li>intersection between the magnetic characteristic of the material with the characteristic of the source</li>
 </ul>
+<div>
+<img src=\"modelica://FluxTubesExtension/Resources/Images/ToroidalCoreAirgap.png\" alt=\"Toroidal core with airgap\"><br>
+</div>
 </html>"), experiment(StopTime=0.05, Interval=0.0001));
 end ToroidalCoreAirgap;
