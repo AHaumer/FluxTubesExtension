@@ -71,12 +71,8 @@ equation
   connect(ground_m.port, r_mFe.port_n) annotation (Line(
       points={{60,-10},{60,-3.55271e-15}},
                                 color={255,127,0}));
-  annotation (experiment(
-      StopTime=0.1,
-      Interval=0.0001,
-      Tolerance=1e-06,
-      __Dymola_Algorithm="Dassl"),                        Documentation(
-        info="<html>
+  annotation (experiment(StopTime=0.1, Interval=0.0001, Tolerance=1e-06),
+    Documentation(info="<html>
 <p>
 This model demonstrates the effects of non-linear magnetisation characteristics of soft magnetic materials (hysteresis neglected). A sinusoidal voltage is applied to an inductor with a closed ferromagnetic core of rectangular shape. Set the <strong>tolerance</strong> to <strong>1e-7</strong>, <strong>simulate for 0.1 s</strong> and plot for example:
 </p>

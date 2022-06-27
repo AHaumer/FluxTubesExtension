@@ -17,8 +17,7 @@ package TestRecordFunctionInput "Test records as inputs of functions"
         "Magnetic flux density";
       Real der_B(unit="T/s")=der(B)
         "Derivative of magnetic flux density";
-        annotation (Placement(transformation(extent={{-10,0},{10,20}})),
-                  experiment(Interval=0.0001, Tolerance=1e-06));
+        annotation (experiment(StopTime=1.0, Interval=0.0001, Tolerance=1e-06));
     end ShowSoftMagneticCharacteristic;
   end Examples;
 

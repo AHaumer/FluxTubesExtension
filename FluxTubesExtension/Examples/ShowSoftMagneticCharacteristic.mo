@@ -33,10 +33,8 @@ model ShowSoftMagneticCharacteristic
   SI.RelativePermeability mu_rd_piecewiseLinear=Material.PiecewiseLinearSoftMagnetic.mu_rdApprox(
     piecewiseLinearMaterial.N, piecewiseLinearMaterial.Hk, piecewiseLinearMaterial.Bk, H)
     "Relative differential permeability of piecewise linear interpolated material ";
-  annotation (experiment(
-      Interval=0.0001,
-      Tolerance=1e-06,
-      __Dymola_Algorithm="Dassl"), Documentation(info="<html>
+  annotation (experiment(StopTime=1.0, Interval=0.0001, Tolerance=1e-06),
+    Documentation(info="<html>
 <p>
 Any of the <a href=\"modelica://Modelica.Magnetic.FluxTubes.Material.SoftMagnetic\">softmagnetic materials</a> can be instantiated as material. 
 Flux density is varied, and one could plot flux density B and relative permeability mu_r versus magnetic field strength H.

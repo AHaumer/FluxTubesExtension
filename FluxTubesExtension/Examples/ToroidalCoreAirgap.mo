@@ -86,7 +86,8 @@ equation
     annotation (Line(points={{-20,-50},{-10,-50}}, color={255,127,0}));
   connect(excitingCoil.port_p, core.port_p)
     annotation (Line(points={{-20,10},{-20,30},{-10,30}}, color={255,127,0}));
-  annotation (Documentation(info="<html>
+  annotation (experiment(StopTime=0.05, Interval=0.0001, Tolerance=1e-06),
+    Documentation(info="<html>
 <p>
 Educational example of a magnetic circuit containing a toroidal iron core with circular cross section and an airgap:
 </p>
@@ -147,5 +148,5 @@ Taking saturation into account the point of operation can be ontained by the fol
 <div>
 <img src=\"modelica://FluxTubesExtension/Resources/Images/ToroidalCoreAirgap.png\" alt=\"Toroidal core with airgap\"><br>
 </div>
-</html>"), experiment(StopTime=0.05, Interval=0.0001));
+</html>"));
 end ToroidalCoreAirgap;
